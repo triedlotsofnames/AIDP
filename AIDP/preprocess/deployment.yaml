@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: titanic-dataprep
+spec:
+  replicas: 2  # Runs two instances of your model
+  selector:
+    matchLabels:
+      app: titanic-dataprep
+  template:
+    metadata:
+      labels:
+        app: titanic-dataprep
+    spec:
+      containers:
+      - name: titanic-dataprep
+        image: dpp:latest  # This should match your Docker image
+        ports:
+        - containerPort: 5000
