@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titanic Data Visualizations</title>
+</head>
+<body>
+    <h1>Titanic Data Visualizations</h1>
+
+    {% for title, img_path in images.items() %}
+        <h2>{{ title }}</h2>
+        <img src="{{ img_path }}" alt="{{ title }}" style="width:80%; max-width:800px;">
+    {% endfor %}
+
+    {% for title, table in tables.items() %}
+        <h2>{{ title }}</h2>
+        <table border="1">
+            <tr>
+                <th>Category</th>
+                <th>Survived</th>
+                <th>Count</th>
+            </tr>
+            {% for (category, survived), count in table.items() %}
+                <tr>
+                    <td>{{ category }}</td>
+                    <td>{{ survived }}</td>
+                    <td>{{ count }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endfor %}
+</body>
+</html>
