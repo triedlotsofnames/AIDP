@@ -26,16 +26,17 @@ To set up the project, follow these steps:
 
 ## Running the Modules
 
-### 1. Preprocessing
-```bash
-python 309_preprocess.py --train data/train.csv --test data/test.csv --train_output data/preprocessed_train.csv --test_output data/preprocessed_test.csv
-```
-
-### 2. Exploratory Data Analysis (EDA)
+### 1. Exploratory Data Analysis (EDA)
 ```bash
 python egt309proj.py
 ```
 This will start a Flask server where visualizations can be accessed.
+
+### 2. Preprocessing
+```bash
+python 309_preprocess.py --train data/train.csv --test data/test.csv --train_output data/preprocessed_train.csv --test_output data/preprocessed_test.csv
+```
+This transform and cleans train and test data for model training and inference. 
 
 ### 3. Model Training
 ```bash
@@ -47,7 +48,7 @@ This script trains multiple models, selects the best one, and saves it as `best_
 ```bash
 python egt309_inf.py
 ```
-This script loads the trained model and makes predictions on `preprocessed_test.csv`.
+This script loads the trained model and preprocessed test dataset and makes predictions on `preprocessed_test.csv`.
 
 ## Dependencies
 The project requires the following Python libraries:
@@ -63,5 +64,35 @@ joblib==1.4.2
 ```
 Install these via `pip install -r requirements.txt`.
 
+## Docker Support
+Each module can be containerized using a `Dockerfile`. To build and run a module in Docker, use:
+```bash
+docker build -t <module-name> .
+docker run -p 5000:5000 <module-name>
+```
+
+## Kubernetes Deployment
+The project includes Kubernetes YAML configuration files for deploying various components:
+
+- **Namespace:** `namespace.yaml`
+- **Persistent Volume Claim:** `pvc.yaml`
+- **Preprocessing Job:** `preprocessing.yaml`
+- **EDA Deployment:** `eda.yaml`
+- **EDA Service:** `eda-service.yaml`
+- **Modelling Job:** `modelling.yaml`
+- **Inference Job:** `inference.yaml`
+
+Please replace all 'triedlotsofnames' in the .yaml files to that of the username in your docker hub.
+
+To deploy on Kubernetes, apply the YAML files using:
+```bash
+kubectl apply -f namespace.yaml
+kubectl apply -f pvc.yaml
+kubectl apply -f preprocessing.yaml
+kubectl apply -f eda.yaml
+kubectl apply -f eda-service.yaml
+kubectl apply -f modelling.yaml
+kubectl apply -f inference.yaml
+```
 
 
