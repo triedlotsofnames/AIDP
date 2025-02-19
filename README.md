@@ -28,25 +28,25 @@ To set up the project, follow these steps:
 
 ### 1. Exploratory Data Analysis (EDA)
 ```bash
-python egt309proj.py
+egt309proj.py
 ```
 This will start a Flask server where visualizations can be accessed.
 
 ### 2. Preprocessing
 ```bash
-python 309_preprocess.py --train data/train.csv --test data/test.csv --train_output data/preprocessed_train.csv --test_output data/preprocessed_test.csv
+309_preprocess.py --train data/train.csv --test data/test.csv --train_output data/preprocessed_train.csv --test_output data/preprocessed_test.csv
 ```
 This transform and cleans train and test data for model training and inference. 
 
 ### 3. Model Training
 ```bash
-python EGT309_Data_Modelling_Code.py
+EGT309_Data_Modelling_Code.py
 ```
 This script trains multiple models, selects the best one, and saves it as `best_titanic_model.pkl`.
 
 ### 4. Inference
 ```bash
-python egt309_inf.py
+egt309_inf.py
 ```
 This script loads the trained model and preprocessed test dataset and makes predictions on `preprocessed_test.csv`.
 
