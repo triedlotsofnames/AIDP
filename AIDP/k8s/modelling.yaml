@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: modelling-job
+  namespace: aidp
+spec:
+  template:
+    spec:
+      containers:
+      - name: modelling
+        image: triedlotsofnames/modelling-container:latest
+        volumeMounts:
+        - name: data-storage
+          mountPath: /Data
+      restartPolicy: Never
+      volumes:
+      - name: data-storage
+        persistentVolumeClaim:
+          claimName: data-pvc
