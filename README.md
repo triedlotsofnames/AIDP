@@ -1,14 +1,14 @@
-# AIDP Project
+# EGT309 Titanic Prediction Project
 
 ## Overview
-The **AIDP Project** is a data pipeline that processes, analyzes, models, and performs inference on datasets. It is structured into four main components:
+The **EGT309 Titanic Prediction Project** is a machine learning pipeline for preprocessing, exploratory data analysis (EDA), modeling, and inference on the Titanic dataset. It is structured into four main components:
 
-1. **Preprocessing (`preprocess/`)**: Cleans and transforms raw data into `preprocessed_train.csv` and `preprocessed_test.csv`.
-2. **Exploratory Data Analysis (`eda/`)**: A Flask web application that visualizes data insights using graphs.
-3. **Modeling (`modelling/`)**: Trains a machine learning model and saves it as a `.pkl` file.
-4. **Inference (`inference/`)**: Uses the trained model to make predictions on new data.
+1. **Preprocessing (`309_preprocess.py`)**: Cleans and transforms raw Titanic data.
+2. **Exploratory Data Analysis (`egt309proj.py`)**: A Flask web application that visualizes data insights.
+3. **Model Training (`EGT309_Data_Modelling_Code.py`)**: Trains machine learning models and selects the best one.
+4. **Inference (`egt309_inf.py`)**: Uses the trained model to make predictions on new data.
 
-Each component has its own `Dockerfile` and `requirements.txt` to ensure modularity and ease of deployment.
+Each component has its own dependencies listed in `requirements.txt` files.
 
 ## Installation & Setup
 To set up the project, follow these steps:
@@ -16,7 +16,7 @@ To set up the project, follow these steps:
 1. Clone the repository:
    ```bash
    git clone <repo-url>
-   cd AIDP
+   cd EGT309_Titanic_Prediction
    ```
 2. Install dependencies:
    ```bash
@@ -28,47 +28,40 @@ To set up the project, follow these steps:
 
 ### 1. Preprocessing
 ```bash
-cd preprocess
-python preprocess.py
+python 309_preprocess.py --train data/train.csv --test data/test.csv --train_output data/preprocessed_train.csv --test_output data/preprocessed_test.csv
 ```
 
 ### 2. Exploratory Data Analysis (EDA)
 ```bash
-cd eda
 python egt309proj.py
 ```
 This will start a Flask server where visualizations can be accessed.
 
 ### 3. Model Training
 ```bash
-cd modelling
-python model.py
+python EGT309_Data_Modelling_Code.py
 ```
+This script trains multiple models, selects the best one, and saves it as `best_titanic_model.pkl`.
 
 ### 4. Inference
 ```bash
-cd inference
 python egt309_inf.py
 ```
+This script loads the trained model and makes predictions on `preprocessed_test.csv`.
 
 ## Dependencies
 The project requires the following Python libraries:
 ```txt
-numpy==2.2.3
 pandas==2.2.3
+numpy==2.2.3
 matplotlib==3.10.0
 seaborn==0.13.2
 Flask
+scikit-learn==1.6.1
+scipy==1.15.1
+joblib==1.4.2
 ```
-These can be installed via `pip install -r requirements.txt`.
+Install these via `pip install -r requirements.txt`.
 
-## Docker Support
-Each module contains a `Dockerfile` for containerization. To build and run a module, use:
-```bash
-docker build -t <module-name> .
-docker run -p 5000:5000 <module-name>
-```
 
-## Contact
-For any queries, reach out to the project contributors.
 
