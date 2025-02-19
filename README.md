@@ -34,7 +34,7 @@ This will start a Flask server where visualizations can be accessed.
 
 ### 2. Preprocessing
 ```bash
-309_preprocess.py --train data/train.csv --test data/test.csv --train_output data/preprocessed_train.csv --test_output data/preprocessed_test.csv
+309_preprocess.py
 ```
 This transform and cleans train and test data for model training and inference. 
 
